@@ -11,4 +11,7 @@ export interface IWord {
   gloss: string;
 }
 
-export type MaterialInputHelper = HTMLInputElement | HTMLTextAreaElement;
+export type MaterialInputHelper =
+  | HTMLInputElement
+  | HTMLTextAreaElement
+  | HTMLSelectElement;

@@ -1,9 +1,10 @@
 import * as React from "react";
-import { AddWord } from "../actions";
+import "./EntryForm.css";
 import { MaterialInputHelper } from "../types";
 
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 
 export interface IEntryFormProps {
   name: string;
@@ -56,14 +57,19 @@ export default class EntryForm extends React.Component<
     return (
       <div>
         <h2>Enter {this.props.name} Words:</h2>
-        <label>
-          Vernacular:{" "}
-          <Input type="text" onChange={evt => this.updateVern(evt)} />
-        </label>
-        <br />
-        <label>
-          Gloss: <Input type="text" onChange={evt => this.updateGloss(evt)} />
-        </label>
+
+        <TextField
+          className="textField"
+          label="Vernacular"
+          onChange={evt => this.updateVern(evt)}
+          margin="normal"
+        />
+        <TextField
+          className="textField"
+          label="Gloss"
+          onChange={evt => this.updateGloss(evt)}
+          margin="normal"
+        />
         <br />
         <Button onClick={this.onClick}> Add Word </Button>
       </div>

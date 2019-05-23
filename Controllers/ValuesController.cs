@@ -8,7 +8,7 @@ using WordsApi.Services;
 
 namespace WordsApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/collection")]
     [ApiController]
     public class WordsController : ControllerBase
     {
@@ -18,13 +18,15 @@ namespace WordsApi.Controllers
         {
             _wordService = wordService;
         }
-        
+
+        // GET: v1/collection
         [HttpGet]
         public ActionResult<List<Word>> Get()
         {
             return _wordService.Get();
         }
 
+        // GET: v1/collection/{id}
         [HttpGet("{id:length(24)}", Name = "GetWord")]
         public ActionResult<Word> Get(string id)
         {
@@ -38,16 +40,18 @@ namespace WordsApi.Controllers
             return word;
         }
 
+        // POST: v1/collection
         [HttpPost]
-        public ActionResult<Word> Create(Word word)
+        public ActionResult<Word> Post(Word word)
         {
             _wordService.Create(word);
 
             return CreatedAtRoute("GetWord", new { id = word.Id.ToString() }, word);
         }
 
+        // PUT: v1/collection/{id}
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Word wordIn)
+        public IActionResult Put(string id, Word wordIn)
         {
             var word = _wordService.Get(id);
 
@@ -61,6 +65,7 @@ namespace WordsApi.Controllers
             return NoContent();
         }
 
+        // DELETE: v1/collection/{id}
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {

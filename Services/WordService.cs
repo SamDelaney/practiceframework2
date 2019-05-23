@@ -10,15 +10,18 @@ namespace WordsApi.Services
 {
     public class WordService
     {
-        private readonly IMongoCollection<Word> _words;
+        private readonly IMongoDatabase _db;
 
         public WordService(IConfiguration config)
         {
             Console.WriteLine("Mongo serveclient config");
-            var client = new MongoClient(config.GetConnectionString("WordstoreDb"));
-            var database = client.GetDatabase("WordstoreDb");
-            _words = database.GetCollection<Word>("Words");
+            var client = new MongoClient(config.GetConnectionString("ConnectionString"));
+            var database = client.GetDatabase("Database");
+            _db = client.GetDatabase(options.Value.Database);
         }
+
+            public IMongoCollection<Word> _words => _db.GetCollection<Word>("Words");
+    }
 
         public List<Word> Get()
         {

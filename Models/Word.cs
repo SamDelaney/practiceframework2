@@ -15,13 +15,12 @@ namespace WordsApi.Models
         [BsonElement("Name")]
         public string WordName { get; set; }
 
-        [BsonElement("Price")]
-        public decimal Price { get; set; }
+        [BsonElement("Vernacular")]
+        public string Vernacular { get; set; }
 
-        [BsonElement("Category")]
-        public string Category { get; set; }
+        [BsonElement("Gloss")]
+        public string GLoss { get; set; }
 
-        [BsonElement("Author")]
-        public string Author { get; set; }
+
     }
 }

@@ -14,6 +14,7 @@ namespace WordsApi.Services
 
         public WordService(IConfiguration config)
         {
+            Console.WriteLine("Mongo serveclient config");
             var client = new MongoClient(config.GetConnectionString("WordstoreDb"));
             var database = client.GetDatabase("WordstoreDb");
             _words = database.GetCollection<Word>("Words");

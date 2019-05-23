@@ -12,8 +12,12 @@ namespace dotnetredo
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+            Console.WriteLine("Program class called");
+
+            Environment.Exit(0);
             CreateWebHostBuilder(args).Build().Run();
         }
 

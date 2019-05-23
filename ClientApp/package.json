@@ -36,9 +36,9 @@
     "extends": "react-app"
   },
   "scripts": {
-    "backend": "mongod --dbpath=C:/mongo_database && C:\\dbdata\\mongodb\\mongodb-win32-x86_64-2008plus-3.2.1\\bin\\mongo",
-    "frontend": "npm update && rimraf ./build && react-scripts start",
-    "start": " npm-run-all --parallel frontend backend",
+    "backend": "mkdir C:\\mongo_database && mongod --dbpath=C:/mongo_database && C:\\dbdata\\mongodb\\mongodb-win32-x86_64-2008plus-3.2.1\\bin\\mongo",
+    "frontend": "rimraf ./build && react-scripts start",
+    "start": "npm update && npm-run-all --parallel frontend backend",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

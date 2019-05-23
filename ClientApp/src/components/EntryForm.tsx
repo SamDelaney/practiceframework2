@@ -24,7 +24,7 @@ export default class EntryForm extends React.Component<
     super(props);
 
     // This is to bind context when passing onClick as a callback
-    this.onClick = this.onClick.bind(this);
+    this.submit = this.submit.bind(this);
 
     //default state
     this.state = {
@@ -33,9 +33,11 @@ export default class EntryForm extends React.Component<
     };
   }
 
-  onClick() {
+  submit(e: React.FormEvent<EventTarget>) {
+    e.preventDefault();
     if (this.props.AddWord) {
-      this.props.AddWord(this.state.inputVern, this.state.inputGloss);
+        this.props.AddWord(this.state.inputVern, this.state.inputGloss);
+        this.setState(state => ({ inputVern: "", inputGloss: "",  }));
     }
   }
 
@@ -57,21 +59,24 @@ export default class EntryForm extends React.Component<
     return (
       <div>
         <h2>Enter {this.props.name} Words:</h2>
-
+        <form onSubmit={this.submit}>
         <TextField
           className="textField"
           label="Vernacular"
+          value={this.state.inputVern}
           onChange={evt => this.updateVern(evt)}
           margin="normal"
         />
         <TextField
           className="textField"
           label="Gloss"
+          value={this.state.inputGloss}
           onChange={evt => this.updateGloss(evt)}
           margin="normal"
         />
         <br />
-        <Button onClick={this.onClick}> Add Word </Button>
+                <Button type="submit"> Add Word </Button>
+        </form>
       </div>
     );
   }

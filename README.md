@@ -6,7 +6,7 @@
 
 1.  Set up your monitor and monitor arms.
 
-    1.1) Ask if you need help.
+    > Ask if you need help
 
 2.  If you don't have your sil email set up yet, do that.
 

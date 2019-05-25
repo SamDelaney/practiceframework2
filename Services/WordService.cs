@@ -16,12 +16,12 @@ namespace WordsApi.Services
         {
             Console.WriteLine("Mongo serveclient config");
             var client = new MongoClient(config.GetConnectionString("ConnectionString"));
-            var database = client.GetDatabase("Database");
-            _db = client.GetDatabase(options.Value.Database);
+            var _db = client.GetDatabase("Database");
+            //_db = client.GetDatabase(config.Value.Database);
         }
 
-            public IMongoCollection<Word> _words => _db.GetCollection<Word>("Words");
-    }
+        public IMongoCollection<Word> _words => _db.GetCollection<Word>("Words");
+
 
         public List<Word> Get()
         {

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetredo", "..\dotnetredo.csproj", "{9564EF4F-7F3B-4967-8795-8CF14BDEC5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseApi.Tests", "DatabaseApi.Tests\DatabaseApi.Tests.csproj", "{27372210-CB30-4B91-A848-D4715F8B2D40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDBApi", "TestDBApi\TestDBApi.csproj", "{A664BCC4-5ADD-4C30-8C20-AB93795E514E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9564EF4F-7F3B-4967-8795-8CF14BDEC5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9564EF4F-7F3B-4967-8795-8CF14BDEC5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9564EF4F-7F3B-4967-8795-8CF14BDEC5A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27372210-CB30-4B91-A848-D4715F8B2D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27372210-CB30-4B91-A848-D4715F8B2D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27372210-CB30-4B91-A848-D4715F8B2D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27372210-CB30-4B91-A848-D4715F8B2D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A664BCC4-5ADD-4C30-8C20-AB93795E514E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A664BCC4-5ADD-4C30-8C20-AB93795E514E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A664BCC4-5ADD-4C30-8C20-AB93795E514E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A664BCC4-5ADD-4C30-8C20-AB93795E514E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

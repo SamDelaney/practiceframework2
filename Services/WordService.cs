@@ -36,6 +36,7 @@ namespace WordsApi.Services
         public Word Create(Word word)
         {
             _words.InsertOne(word);
+            _words.Find(word);
             return word;
         }
 

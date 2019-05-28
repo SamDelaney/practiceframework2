@@ -4,6 +4,7 @@ import { Dispatch } from "react";
 import EntryForm from "../components/EntryForm";
 import * as actions from "../actions";
 import { StoreState } from "../types/index";
+import { ThunkDispatch, ThunkAction } from "redux-thunk";
 
 export function mapStateToProps({ languageName }: StoreState) {
   return {
@@ -13,8 +14,9 @@ export function mapStateToProps({ languageName }: StoreState) {
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.WordAction>) {
   return {
-    AddWord: (vern: string, gloss: string) =>
-      dispatch(actions.AddWord({ vern, gloss }))
+    AddWord: (vern: string, gloss: string) => {
+      dispatch(actions.AddWord({ vern, gloss }));
+    }
   };
 }
 

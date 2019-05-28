@@ -3,27 +3,37 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
-import { createStore, Store, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { LocalizeProvider, localizeReducer } from "react-localize-redux";
+import { createStore, Store, applyMiddleware, combineReducers } from "redux";
+import thunk, { ThunkDispatch, ThunkMiddleware } from "redux-thunk";
 
 import "./index.css";
 import App from "./App";
-import { rootReducer } from "./reducers/index";
-import { StoreState } from "./types/index";
+import { storeReducer } from "./reducers/index";
+import { StoreState, AppState } from "./types/index";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
 const rootElement = document.getElementById("root");
-export const store: Store<StoreState> = createStore(
+
+const rootReducer = combineReducers({
+  store: storeReducer,
+  localize: localizeReducer
+});
+
+export const store: Store<AppState> = createStore(
   rootReducer,
   applyMiddleware(thunk)
 );
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <LocalizeProvider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      ,
+    </LocalizeProvider>
+  </Provider>,
   rootElement
 );
 

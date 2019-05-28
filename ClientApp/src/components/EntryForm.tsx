@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./EntryForm.css";
 import { MaterialInputHelper } from "../types";
+import { Translate } from "react-localize-redux";
 
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
@@ -36,8 +37,8 @@ export default class EntryForm extends React.Component<
   submit(e: React.FormEvent<EventTarget>) {
     e.preventDefault();
     if (this.props.AddWord) {
-        this.props.AddWord(this.state.inputVern, this.state.inputGloss);
-        this.setState(state => ({ inputVern: "", inputGloss: "",  }));
+      this.props.AddWord(this.state.inputVern, this.state.inputGloss);
+      this.setState(state => ({ inputVern: "", inputGloss: "" }));
     }
   }
 
@@ -60,22 +61,22 @@ export default class EntryForm extends React.Component<
       <div>
         <h2>Enter {this.props.name} Words:</h2>
         <form onSubmit={this.submit}>
-        <TextField
-          className="textField"
-          label="Vernacular"
-          value={this.state.inputVern}
-          onChange={evt => this.updateVern(evt)}
-          margin="normal"
-        />
-        <TextField
-          className="textField"
-          label="Gloss"
-          value={this.state.inputGloss}
-          onChange={evt => this.updateGloss(evt)}
-          margin="normal"
-        />
-        <br />
-                <Button type="submit"> Add Word </Button>
+          <TextField
+            className="textField"
+            label="Vernacular"
+            value={this.state.inputVern}
+            onChange={evt => this.updateVern(evt)}
+            margin="normal"
+          />
+          <TextField
+            className="textField"
+            label="Gloss"
+            value={this.state.inputGloss}
+            onChange={evt => this.updateGloss(evt)}
+            margin="normal"
+          />
+          <br />
+          <Button type="submit"> Add Word </Button>
         </form>
       </div>
     );

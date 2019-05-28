@@ -3,7 +3,7 @@ import { StoreState } from "../types/index";
 import { ADD_WORD } from "../constants/index";
 import { Action } from "redux";
 
-export function rootReducer(state: StoreState | undefined, action: Action) {
+export function storeReducer(state: StoreState | undefined, action: Action) {
   if (state === undefined) return InitializeStore(state, action);
   else return wordReducer(state, action as WordAction);
 }

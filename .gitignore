@@ -232,4 +232,9 @@ _Pvt_Extensions
 .fake/
 
 # Mongo Database files
-mongo_databse/*
+mongo_database/*
+
+# Visual Studio
+.vs/*
+BackendFramework/bin
+BackendFramework/obj

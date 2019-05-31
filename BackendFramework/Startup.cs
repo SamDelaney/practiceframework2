@@ -1,13 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BackendFramework.Context;
+using BackendFramework.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WordsApi.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace dotnetredo
+namespace BackendFramework
 {
     public class Startup
     {
@@ -18,25 +24,34 @@ namespace dotnetredo
 
         public IConfiguration Configuration { get; }
 
+        public class Settings
+        {
+            public string ConnectionString { get; set; }
+            public string Database { get; set; }
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin());
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<Settings>(
         options =>
         {
-            options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-            options.Database = Configuration.GetSection("MongoDb:Database").Value;
+            options.ConnectionString = Configuration.GetSection("MongoDB:ConnectionString").Value;
+            options.Database = Configuration.GetSection("MongoDB:Database").Value;
         });
-
-            services.AddScoped<WordService>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/build";
-            });
+            services.AddTransient<IWordContext, WordContext>();
+            services.AddTransient<IWordService, WordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,31 +63,17 @@ namespace dotnetredo
             }
             else
             {
-                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
-
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            app.UseCors(builder =>
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            app.UseMvc();
         }
     }
 }

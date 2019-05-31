@@ -230,3 +230,11 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Mongo Database files
+mongo_database/*
+
+# Visual Studio
+.vs/*
+BackendFramework/bin
+BackendFramework/obj

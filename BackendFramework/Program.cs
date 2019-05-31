@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,16 +8,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace dotnetredo
+namespace BackendFramework
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
-            Console.WriteLine("Program class called");
-
-            Environment.Exit(0);
             CreateWebHostBuilder(args).Build().Run();
         }
 
